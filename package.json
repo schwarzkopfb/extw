@@ -22,7 +22,7 @@
   ],
   "author": "Schwarzkopf Balazs <schwarzkopfb@icloud.com>",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "tap": "^5.8.0"
   }
 }
