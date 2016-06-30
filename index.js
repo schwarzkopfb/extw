@@ -10,16 +10,16 @@ exports.cache  = {}
 
 var assert = require('assert')
 
-function parseFieldList(str) {
+function parseWordList(str) {
     return String(str).match(exports.regExp)
 }
 
-function parseFieldListCached(str) {
+function parseWordListCached(str) {
     var cached = exports.cache[ str ]
 
     return cached
         ? cached
-        : exports.cache[ str ] = parseFieldList(str)
+        : exports.cache[ str ] = parseWordList(str)
 }
 
 /**
@@ -36,7 +36,7 @@ function parseFields(list) {
     assert.equal(typeof list, 'string', 'list must be an array or string')
 
     if (exports.cache)
-        return parseFieldListCached(list)
+        return parseWordListCached(list)
     else
-        return parseFieldList(list)
+        return parseWordList(list)
 }

@@ -1,6 +1,6 @@
 {
   "name": "extw",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Extract words from a given string.",
   "main": "index.js",
   "files": [ "index.js" ],
