@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Extract words from a given string.",
   "main": "index.js",
+  "engines": {
+    "node": ">=0.8"
+  },
   "scripts": {
     "test": "tap test.js",
     "coverage": "npm test -- --cov --coverage-report=lcov"
