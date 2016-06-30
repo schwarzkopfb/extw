@@ -4,9 +4,9 @@
 
 'use strict'
 
-const assert = require('assert'),
-      test   = require('tap'),
-      parse  = require('.')
+var assert = require('assert'),
+    test   = require('tap'),
+    parse  = require('./')
 
 test.test('basic', function (test) {
     test.same(
@@ -28,7 +28,7 @@ test.test('input', function (test) {
     test.same(parse(null), [], 'array should be returned')
     test.same(parse(0), [], 'array should be returned')
 
-    const arr = [ 'lorem', 'ipsum' ]
+    var arr = [ 'lorem', 'ipsum' ]
     test.equal(parse(arr), arr, 'the same array should be returned')
 
     function testAssertion(val) {
@@ -54,7 +54,7 @@ test.test('cache', function (test) {
     test.equal(parse('a b c'), words, 'result should be cached')
 
     parse.cache = false
-    words = parse('a b c')
+    words       = parse('a b c')
     test.notEqual(parse('a b c'), words, 'result should not be cached')
 
     test.end()

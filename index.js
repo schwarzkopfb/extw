@@ -8,14 +8,14 @@ exports = module.exports = parseFields
 exports.regExp = /\w+/g
 exports.cache  = {}
 
-const assert = require('assert')
+var assert = require('assert')
 
 function parseFieldList(str) {
     return String(str).match(exports.regExp)
 }
 
 function parseFieldListCached(str) {
-    const cached = exports.cache[ str ]
+    var cached = exports.cache[ str ]
 
     return cached
         ? cached
