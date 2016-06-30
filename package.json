@@ -1,0 +1,25 @@
+{
+  "name": "extw",
+  "version": "0.0.1",
+  "description": "Extract words from a given string.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test.js",
+    "coverage": "npm test -- --cov --coverage-report=lcov"
+  },
+  "keywords": [
+    "extract",
+    "word",
+    "list",
+    "parse",
+    "string",
+    "field",
+    "key",
+    "name"
+  ],
+  "author": "Schwarzkopf Balazs <schwarzkopfb@icloud.com>",
+  "license": "MIT",
+  "dependencies": {
+    "tap": "^5.8.0"
+  }
+}
