@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Extract words from a given string.",
   "main": "index.js",
+  "files": [ "index.js" ],
   "engines": {
     "node": ">=0.8"
   },
@@ -21,6 +22,7 @@
     "name"
   ],
   "author": "Schwarzkopf Balazs <schwarzkopfb@icloud.com>",
+  "repository": "schwarzkopfb/extw",
   "license": "MIT",
   "devDependencies": {
     "tap": "^5.8.0"
