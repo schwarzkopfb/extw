@@ -4,7 +4,7 @@
 
 'use strict'
 
-exports = module.exports = parseFields
+exports = module.exports = extractWords
 exports.regExp = /\w+/g
 exports.cache  = {}
 
@@ -26,7 +26,7 @@ function parseWordListCached(str) {
  * @param {string|Array} list The word list to parse.
  * @returns {[string]}
  */
-function parseFields(list) {
+function extractWords(list) {
     if (!list)
         return []
 
