@@ -32,6 +32,9 @@ extw([ 'array' ]) // returns the given array untouched
 extw(null)        // returns an empty array
 extw(true)        // raises an assert.AssertionError
 
+extw('string', null) // cache explicitly disabled for _this_ call
+extw('string', {})   // us the given object as cache
+
 typeof extw.cache === 'object'
 
 extw.cache = {}      // reset cache

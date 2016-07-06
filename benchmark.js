@@ -1,7 +1,3 @@
-/**
- * Created by schwarzkopfb on 30/06/16.
- */
-
 'use strict'
 
 var words = require('./'),

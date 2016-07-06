@@ -1,7 +1,3 @@
-/**
- * Created by schwarzkopfb on 30/06/16.
- */
-
 'use strict'
 
 exports = module.exports = extractWords
@@ -14,29 +10,43 @@ function parseWordList(str) {
     return String(str).match(exports.regExp)
 }
 
-function parseWordListCached(str) {
-    var cached = exports.cache[ str ]
+function parseWordListCached(str, cache) {
+    var cached = cache[ str ]
 
     return cached
         ? cached
-        : exports.cache[ str ] = parseWordList(str)
+        : cache[ str ] = parseWordList(str)
 }
 
 /**
- * @param {string|Array} list The word list to parse.
+ * Extract words from a given string.
+ *
+ * @param {string|Array} str The string to parse.
+ * @param {null|Object} [cache] Pass an object to use for caching instead of the default. Or pass `null` to make an uncached call.
  * @returns {[string]}
  */
-function extractWords(list) {
-    if (!list)
+function extractWords(str, cache) {
+    if (!str)
         return []
 
-    if (Array.isArray(list))
-        return list
+    if (Array.isArray(str))
+        return str
 
-    assert.equal(typeof list, 'string', 'list must be an array or string')
+    assert.equal(typeof str, 'string', 'first parameter must be an array or string')
 
-    if (exports.cache)
-        return parseWordListCached(list)
-    else
-        return parseWordList(list)
+    switch (cache) {
+        case undefined:
+            if (exports.cache)
+                return parseWordListCached(str, exports.cache)
+            else
+                return parseWordList(str)
+
+        case null:
+        case false:
+            return parseWordList(str)
+
+        default:
+            assert.equal(typeof cache, 'object', 'second parameter must be an object or null')
+            return parseWordListCached(str, cache)
+    }
 }

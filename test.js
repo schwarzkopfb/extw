@@ -1,7 +1,3 @@
-/**
- * Created by schwarzkopfb on 30/06/16.
- */
-
 'use strict'
 
 var assert = require('assert'),
@@ -31,10 +27,10 @@ test.test('input', function (test) {
     var arr = [ 'lorem', 'ipsum' ]
     test.equal(parse(arr), arr, 'the same array should be returned')
 
-    function testAssertion(val) {
+    function testAssertion(val, cache) {
         test.throws(
             function () {
-                parse(val)
+                parse(val, cache)
             },
             assert.AssertionError,
             'invalid input should be asserted'
@@ -46,6 +42,19 @@ test.test('input', function (test) {
     testAssertion(true)
     testAssertion(testAssertion)
 
+    testAssertion('a', 1)
+    testAssertion('a', true)
+    testAssertion('a', testAssertion)
+
+    test.doesNotThrow(
+        function () {
+            parse('a', {})
+            parse('a', null)
+            parse('a', false)
+        },
+        'valid cache param should be accepted'
+    )
+
     test.end()
 })
 
@@ -56,6 +65,16 @@ test.test('cache', function (test) {
     parse.cache = false
     words       = parse('a b c')
     test.notEqual(parse('a b c'), words, 'result should not be cached')
+
+    var cache = {},
+        list  = parse('a b c', cache)
+    test.equal(list, cache[ 'a b c' ], 'cache should be set per call')
+
+    parse.cache = cache = {}
+    parse('c b a', null)
+    test.same(cache, {}, 'cache should be disabled')
+    parse('c b a', false)
+    test.same(cache, {}, 'cache should be disabled')
 
     test.end()
 })
