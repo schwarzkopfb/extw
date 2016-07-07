@@ -32,18 +32,21 @@ extw([ 'array' ]) // returns the given array untouched
 extw(null)        // returns an empty array
 extw(true)        // raises an assert.AssertionError
 
-extw('string', null) // cache explicitly disabled for _this_ call
-extw('string', {})   // us the given object as cache
+extw('string', null) // disable cache for _this_ call
+extw('string', {})   // use the given object as cache for _this_ call
 
 typeof extw.cache === 'object'
 
 extw.cache = {}      // reset cache
 extw.cache = false   // disable cache
-extw.cache = 'error' // a TypeError will be thrown on the next call to extw()
+extw.cache = 'error' // raises an assert.AssertionError
 
 extw.regExp instanceof RegExp === true
 
-extw.regExp = /a+/g // override word match regexp
+extw.regExp = /a+/g   // override word match regexp
+extw.regExp = 'error' // raises an assert.AssertionError
+
+typeof extw.version === 'string' // returns the version string from package manifest
 
 ```
 

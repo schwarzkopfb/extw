@@ -4,6 +4,51 @@ var assert = require('assert'),
     test   = require('tap'),
     parse  = require('./')
 
+test.test('api', function (test) {
+    test.type(parse, 'function', 'main export should be a function')
+    test.equals(parse.version, require('./package.json').version, 'version should be exposed')
+    test.same(parse.cache, {}, 'cache should be an empty object by default')
+    test.type(parse.regExp, RegExp, 'default word-match expression should be a RegExp instance')
+    test.equal(parse.regExp.toString(), '/\\w+/g', 'default word-match expression is incorrect')
+
+    test.throws(
+        function () {
+            parse.version = 'invalid'
+        },
+        TypeError,
+        'version should be read-only'
+    )
+    test.throws(
+        function () {
+            parse.cache = 'invalid'
+        },
+        assert.AssertionError,
+        'cache value should be asserted'
+    )
+    test.throws(
+        function () {
+            parse.regExp = 'invalid'
+        },
+        assert.AssertionError,
+        'default word-match value should be asserted'
+    )
+
+    test.doesNotThrow(
+        function () {
+            parse.cache = null
+            parse.cache = false
+            parse.cache = {}
+
+            parse.regExp = /a+/g
+        },
+        'invalid settings should be accepted'
+    )
+    test.same(parse('aurora'), [ 'a', 'a' ], 'regexp should be overridden')
+
+    parse.regExp = /\w+/g // reset to default, because of later tests
+    test.end()
+})
+
 test.test('basic', function (test) {
     test.same(
         parse(' a|b ,  c,, d e /f  |||g'),
@@ -78,6 +123,3 @@ test.test('cache', function (test) {
 
     test.end()
 })
-
-parse.regExp = /a+/g
-test.same(parse('aurora'), [ 'a', 'a' ], 'regexp should be overridden')
