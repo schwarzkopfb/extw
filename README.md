@@ -3,7 +3,7 @@
 [![node version](https://img.shields.io/badge/node-%3E=0.8-brightgreen.svg?style=flat-square)](https://nodejs.org/download)
 [![build status](https://img.shields.io/travis/schwarzkopfb/extw.svg?style=flat-square)](https://travis-ci.org/schwarzkopfb/extw)
 [![test coverage](https://img.shields.io/coveralls/schwarzkopfb/extw.svg?style=flat-square)](https://coveralls.io/github/schwarzkopfb/extw)
-[![license](https://img.shields.io/npm/l/express.svg?style=flat-square)](https://github.com/schwarzkopfb/extw/blob/development/LICENSE)
+[![license](https://img.shields.io/npm/l/extw.svg?style=flat-square)](https://github.com/schwarzkopfb/extw/blob/development/LICENSE)
 
 # extw
 
@@ -58,4 +58,4 @@ With npm:
 
 ## License
 
-[MIT](https://github.com/schwarzkopfb/extw/blob/master/LICENSE)
+[MIT](/LICENSE)
